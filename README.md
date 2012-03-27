@@ -1,7 +1,7 @@
 Heroku buildpack: Scala
 =========================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpack) for Scala apps.
+This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Scala apps.
 It uses [sbt](https://github.com/harrah/xsbt/) 0.11.0+.
 
 Usage
@@ -12,7 +12,7 @@ Example usage:
     $ ls
     Procfile build.sbt project src
 
-    $ heroku create --stack cedar --buildpack http://github.com/heroku/heroku-buildpack-scala.git
+    $ heroku create --stack cedar --buildpack https://github.com/heroku/heroku-buildpack-scala.git
 
     $ git push heroku master
     ...
@@ -30,11 +30,14 @@ To use this buildpack, fork it on Github.  Push up changes to your fork, then cr
 
 For example, to reduce your slug size by not including the .ivy2/cache, you could add the following.
 
-    # AFTER THE LINE THAT READS
-    # cp -r --no-target-directory $DIR $CACHE_DIR/$DIR
-    echo "-----> Dropping ivy cache from the slug"
-    rm -rf $SBT_USER_HOME/.ivy2
-
+    for DIR in $CACHED_DIRS ; do 
+    rm -rf $CACHE_DIR/$DIR 
+    mkdir -p $CACHE_DIR/$DIR 
+    cp -r $DIR/.  $CACHE_DIR/$DIR 
+    # The following 2 lines are what you would add
+    echo "-----> Dropping ivy cache from the slug" 
+    rm -rf $SBT_USER_HOME/.ivy2 
+    
 Note: You will need to have your build copy the necessary jars to run your application to a place that will remain included with the slug.
 
 
@@ -43,3 +46,7 @@ Commit and push the changes to your buildpack to your Github fork, then push you
     ...
     -----> Dropping ivy cache from the slug
 
+License
+-------
+
+Licensed under the MIT License. See LICENSE file.
