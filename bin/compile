@@ -23,14 +23,14 @@ SBT_BINDIR="$SBT_USER_HOME"/bin
 cd $BUILD_DIR
 
 # unpack cache
-CACHED_DIRS="$SBT_USER_HOME/.ivy2 $SBT_BINDIR"
-for DIR in $CACHED_DIRS; do
-  rm -rf $DIR
-  if [ -d $CACHE_DIR/$DIR ]; then
-    mkdir -p $DIR
-    cp -r $CACHE_DIR/$DIR/.  $DIR
-  fi
-done
+# CACHED_DIRS="$SBT_USER_HOME/.ivy2 $SBT_BINDIR"
+# for DIR in $CACHED_DIRS; do
+#   rm -rf $DIR
+#   if [ -d $CACHE_DIR/$DIR ]; then
+#     mkdir -p $DIR
+#     cp -r $CACHE_DIR/$DIR/.  $DIR
+#   fi
+# done
 
 if ! test -e project/build.properties; then
 	echo " !      Error, your scala project must include project/build.properties and define sbt.version"
@@ -53,14 +53,15 @@ fi
 
 
 
-SBT_VERSION="0.11.0"
+SBT_VERSION="0.11.2"
 SBT_JAR="sbt-launch-$SBT_VERSION.jar"
 SBT_PROPS="sbt-$SBT_VERSION.boot.properties"
-SBT_URL="http://s3.amazonaws.com/heroku-jvm-langpack-scala/$SBT_JAR"
-SBT_PROPS_URL="http://s3.amazonaws.com/heroku-jvm-langpack-scala/$SBT_PROPS"
+SBT_URL="http://dl.dropbox.com/u/24364253/sbt/$SBT_JAR"
+SBT_PROPS_URL="http://dl.dropbox.com/u/24364253/sbt/$SBT_PROPS"
 #0.10.1 SBT_SHA1="b41d79cb2d919a0e8732fb8ef4e71347cceea90a"
 #0.11.0-RC1 SBT_SHA1="85abf74a24593c2b2ea5b033ef01c47b11c04740"
-SBT_SHA1="5b15ba0fc63e355d47293def4bc2e58da6f03787"
+#0.11.0 SBT_SHA1="5b15ba0fc63e355d47293def4bc2e58da6f03787"
+SBT_SHA1="50bd4fcf95922be5893a3973699d6b6f42946e2d"
 ## in 0.10 start-script will depend on package, if packaging
 ## is required - it may not be, we can run .class files or a package-war
 ## instead.
@@ -129,9 +130,9 @@ rm -rf $SBT_USER_HOME/.ivy2
 mkdir -p $SBT_USER_HOME/.ivy2
 
 # repack cache
-mkdir -p $CACHE_DIR
-for DIR in $CACHED_DIRS ; do
-  rm -rf $CACHE_DIR/$DIR
-  mkdir -p $CACHE_DIR/$DIR
-  cp -r $DIR/.  $CACHE_DIR/$DIR
-done
+# mkdir -p $CACHE_DIR
+# for DIR in $CACHED_DIRS ; do
+#   rm -rf $CACHE_DIR/$DIR
+#   mkdir -p $CACHE_DIR/$DIR
+#   cp -r $DIR/.  $CACHE_DIR/$DIR
+# done
