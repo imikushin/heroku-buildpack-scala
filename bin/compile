@@ -61,7 +61,7 @@ SBT_URL="http://dl.dropbox.com/u/24364253/sbt/$SBT_JAR"
 #0.11.0-RC1 SBT_SHA1="85abf74a24593c2b2ea5b033ef01c47b11c04740"
 #0.11.0 SBT_SHA1="5b15ba0fc63e355d47293def4bc2e58da6f03787"
 # -- enhanced: no scala-tools repos
-SBT_SHA1="d5f50f1fa87c0aa170fff626a22322406b6d1726"
+SBT_SHA1="b19c4a0e4f2a0a2aebc97b9755600ca6586c2399"
 ## in 0.10 start-script will depend on package, if packaging
 ## is required - it may not be, we can run .class files or a package-war
 ## instead.
