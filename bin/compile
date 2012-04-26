@@ -103,22 +103,22 @@ fi
 cp "$BIN_DIR/../opt/sbt-$SBT_VERSION" "$SBT_BINDIR"/sbt
 
 #echo -n "-----> Installing sbt.boot.properties..."
-# cp "$BIN_DIR/../opt/sbt-$SBT_VERSION.boot.properties" "$SBT_BINDIR"/sbt.boot.properties
+cp "$BIN_DIR/../opt/sbt-$SBT_VERSION.boot.properties" "$SBT_BINDIR"/sbt.boot.properties
 #echo " done"
 
 
 #echo -n "-----> Intsalling plugins..."
-# HEROKU_PLUGIN="Heroku-$SBT_VERSION.scala"
-# mkdir -p "$SBT_USER_HOME/.sbt/plugins" && cp "$BIN_DIR/../opt/$HEROKU_PLUGIN" "$SBT_USER_HOME/.sbt/plugins/"
+HEROKU_PLUGIN="Heroku-$SBT_VERSION.scala"
+mkdir -p "$SBT_USER_HOME/.sbt/plugins" && cp "$BIN_DIR/../opt/$HEROKU_PLUGIN" "$SBT_USER_HOME/.sbt/plugins/"
 
-# HEROKU_PLUGINS_CONFIG="heroku-plugins-$SBT_VERSION.sbt"
-# mkdir -p "$SBT_USER_HOME/.sbt/plugins" && cp "$BIN_DIR/../opt/$HEROKU_PLUGINS_CONFIG" "$SBT_USER_HOME/.sbt/plugins/"
+HEROKU_PLUGINS_CONFIG="heroku-plugins-$SBT_VERSION.sbt"
+mkdir -p "$SBT_USER_HOME/.sbt/plugins" && cp "$BIN_DIR/../opt/$HEROKU_PLUGINS_CONFIG" "$SBT_USER_HOME/.sbt/plugins/"
 #echo " done"
 
 # build app
 echo "-----> Running: sbt $SBT_TASKS"
-# test -e "$SBT_BINDIR"/sbt.boot.properties && PROPS_OPTION="-Dsbt.boot.properties=$SBT_BINDIR/sbt.boot.properties"
-HOME="$SBT_USER_HOME_ABSOLUTE" java -Xmx512M -Dfile.encoding=UTF8 -Duser.home="$SBT_USER_HOME_ABSOLUTE" -Dsbt.log.noformat=true -Divy.default.ivy.user.dir="$SBT_USER_HOME_ABSOLUTE/.ivy2" -jar "$SBT_BINDIR"/$SBT_JAR $SBT_TASKS 2>&1 | sed -u 's/^/       /'
+test -e "$SBT_BINDIR"/sbt.boot.properties && PROPS_OPTION="-Dsbt.boot.properties=$SBT_BINDIR/sbt.boot.properties"
+HOME="$SBT_USER_HOME_ABSOLUTE" java -Xmx512M -Dfile.encoding=UTF8 -Duser.home="$SBT_USER_HOME_ABSOLUTE" -Dsbt.log.noformat=true -Divy.default.ivy.user.dir="$SBT_USER_HOME_ABSOLUTE/.ivy2" $PROPS_OPTION -jar "$SBT_BINDIR"/$SBT_JAR $SBT_TASKS 2>&1 | sed -u 's/^/       /'
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build app with sbt"
   exit 1
