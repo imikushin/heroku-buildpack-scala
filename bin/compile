@@ -19,6 +19,7 @@ SBT_USER_HOME_ABSOLUTE="$BUILD_DIR/$SBT_USER_HOME"
 # where we put the SBT binaries
 SBT_BINDIR="$SBT_USER_HOME"/sbt-extras
 
+mkdir -p $SBT_USER_HOME_ABSOLUTE
 cd $SBT_USER_HOME_ABSOLUTE
 git clone git://github.com/paulp/sbt-extras.git
 
