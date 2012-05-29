@@ -23,6 +23,8 @@ mkdir -p $SBT_USER_HOME_ABSOLUTE
 cd $SBT_USER_HOME_ABSOLUTE
 git clone git://github.com/paulp/sbt-extras.git
 
+export JAVA_OPTS="-Dfile.encoding=UTF-8 "$JAVA_OPTS
+
 # chdir as sbt expects
 cd $BUILD_DIR
 
