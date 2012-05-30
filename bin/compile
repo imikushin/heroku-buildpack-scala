@@ -4,6 +4,8 @@
 # fail fast
 set -e
 
+export LANG=en_US.UTF-8
+
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
 # parse args
@@ -41,7 +43,7 @@ fi
 # build app
 echo "-----> Running: sbt $SBT_TASKS"
 
-HOME="$SBT_USER_HOME_ABSOLUTE" $SBT_BINDIR/sbt -Dfile.encoding=UTF-8 -v -Duser.home="$SBT_USER_HOME_ABSOLUTE" -Dsbt.log.noformat=true $SBT_TASKS 2>&1 | sed -u 's/^/       /'
+HOME="$SBT_USER_HOME_ABSOLUTE" $SBT_BINDIR/sbt -v -Duser.home="$SBT_USER_HOME_ABSOLUTE" -Dsbt.log.noformat=true $SBT_TASKS 2>&1 | sed -u 's/^/       /'
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build app with sbt"
   exit 1
