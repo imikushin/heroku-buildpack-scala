@@ -23,7 +23,7 @@ SBT_BINDIR="$SBT_USER_HOME"/sbt-extras
 
 mkdir -p $SBT_USER_HOME_ABSOLUTE
 cd $SBT_USER_HOME_ABSOLUTE
-git clone git://github.com/paulp/sbt-extras.git
+git clone git://github.com/imikushin/sbt-extras.git
 
 # chdir as sbt expects
 cd $BUILD_DIR
