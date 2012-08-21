@@ -16,6 +16,8 @@ CACHE_DIR=$2
 install_java ${BUILD_DIR} "1.7"
 export PATH="${BUILD_DIR}/.jdk/bin":$PATH
 
+java -version
+
 # home directory from perspective of SBT; we rename
 # it because otherwise the project root and $HOME
 # are the same, and by default .sbt has a (different)
