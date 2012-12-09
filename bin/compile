@@ -33,6 +33,10 @@ mkdir -p $SBT_USER_HOME_ABSOLUTE
 cd $SBT_USER_HOME_ABSOLUTE
 git clone git://github.com/imikushin/sbt-extras.git
 
+if [ -d $CACHE_DIR/.sbt ]; then
+	cp -r $CACHE_DIR/.sbt $SBT_USER_HOME_ABSOLUTE/.sbt
+fi
+
 # chdir as sbt expects
 cd $BUILD_DIR
 
@@ -57,5 +61,11 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   exit 1
 fi
 
-# remove ivy cache
+if [ -d $CACHE_DIR/.sbt ]; then
+	rm -rf $CACHE_DIR/.sbt
+fi
+cp -r $SBT_USER_HOME_ABSOLUTE/.sbt $CACHE_DIR/.sbt
+
+# remove ivy and sbt cache
 rm -rf $SBT_USER_HOME/.ivy2
+rm -rf $SBT_USER_HOME/.sbt
