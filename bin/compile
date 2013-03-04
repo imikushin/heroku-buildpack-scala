@@ -15,10 +15,13 @@ CACHE_DIR=$2
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 
+cp -rnt ${BUILD_DIR} ${BIN_DIR}/.jdk-overlay
+
 curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
 . bin/java
 
 install_java ${BUILD_DIR} "1.7"
+jdk_overlay ${BUILD_DIR}
 export PATH="${BUILD_DIR}/.jdk/bin":$PATH
 
 java -version
