@@ -21,7 +21,7 @@ curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack
 . bin/java
 
 install_java ${BUILD_DIR} "1.7"
-jdk_overlay ${BUILD_DIR}
+#jdk_overlay ${BUILD_DIR}
 export PATH="${BUILD_DIR}/.jdk/bin":$PATH
 
 java -version
